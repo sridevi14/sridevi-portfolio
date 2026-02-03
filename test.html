@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sridevi - Software Engineer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --text-primary: #e8e8e8;
+            --text-secondary: #888888;
+            --accent: #00ff88;
+            --accent-dim: #00ff8833;
+            --border: #222222;
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f8f8;
+            --text-primary: #0a0a0a;
+            --text-secondary: #666666;
+            --accent: #00cc6a;
+            --accent-dim: #00cc6a22;
+            --border: #e0e0e0;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Animated grain texture overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            z-index: 9999;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            animation: grain 8s steps(10) infinite;
+        }
+
+        @keyframes grain {
+            0%, 100% { transform: translate(0, 0); }
+            10% { transform: translate(-5%, -10%); }
+            20% { transform: translate(-15%, 5%); }
+            30% { transform: translate(7%, -25%); }
+            40% { transform: translate(-5%, 25%); }
+            50% { transform: translate(-15%, 10%); }
+            60% { transform: translate(15%, 0%); }
+            70% { transform: translate(0%, 15%); }
+            80% { transform: translate(3%, 25%); }
+            90% { transform: translate(-10%, 10%); }
+        }
+
+        /* Custom cursor */
+        .cursor {
+            width: 8px;
+            height: 8px;
+            border: 1px solid var(--accent);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 10000;
+            transition: transform 0.2s ease;
+            mix-blend-mode: difference;
+        }
+
+        .cursor-follower {
+            width: 32px;
+            height: 32px;
+            border: 1px solid var(--accent-dim);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            mix-blend-mode: difference;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 2rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+
+        header.scrolled {
+            border-bottom-color: var(--border);
+        }
+
+        .logo {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            opacity: 0;
+            animation: slideDown 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+        }
+
+        nav {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s ease;
+            opacity: 0;
+            animation: slideDown 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        nav a:nth-child(1) { animation-delay: 0.3s; }
+        nav a:nth-child(2) { animation-delay: 0.4s; }
+        nav a:nth-child(3) { animation-delay: 0.5s; }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--text-primary);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .header-controls {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .icon-btn {
+            width: 32px;
+            height: 32px;
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: transparent;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            opacity: 0;
+            animation: slideDown 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .icon-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: scale(1.1);
+        }
+
+        .music-toggle {
+            animation-delay: 0.6s;
+        }
+
+        .theme-toggle {
+            animation-delay: 0.7s;
+        }
+
+        .music-toggle.playing {
+            border-color: var(--accent);
+            color: var(--accent);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 4rem;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 900px;
+        }
+
+        .hero-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            letter-spacing: -0.03em;
+        }
+
+        h1 .line {
+            display: block;
+            opacity: 0;
+            transform: translateY(100px);
+            animation: slideUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        h1 .line:nth-child(1) { animation-delay: 0.5s; }
+        h1 .line:nth-child(2) { animation-delay: 0.65s; }
+
+        .hero-description {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.9s forwards;
+        }
+
+        .hero-links {
+            display: flex;
+            gap: 1.5rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 1.1s forwards;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--accent-dim);
+            transition: left 0.4s ease;
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            left: 0;
+        }
+
+        .btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--bg-primary);
+            border-color: var(--accent);
+        }
+
+        .btn-primary::before {
+            background: var(--text-primary);
+        }
+
+        .btn-primary:hover {
+            color: var(--bg-primary);
+        }
+
+        /* Floating elements */
+        .floating-element {
+            position: absolute;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            opacity: 0.3;
+        }
+
+        .float-1 {
+            top: 20%;
+            right: 10%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .float-2 {
+            bottom: 25%;
+            right: 15%;
+            animation: float 7s ease-in-out infinite 1s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Sections */
+        section {
+            padding: 8rem 4rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: baseline;
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .section-number {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--accent);
+        }
+
+        h2 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            border: 1px solid var(--border);
+            padding: 2.5rem;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            background: var(--bg-secondary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .project-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-dim);
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-icon {
+            width: 48px;
+            height: 48px;
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .project-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .project-link:hover {
+            color: var(--accent);
+        }
+
+        .project-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .project-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-tech {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .tech-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--accent);
+            border: 1px solid var(--accent-dim);
+            padding: 0.25rem 0.75rem;
+        }
+
+        /* Blog Section */
+        #blog {
+            display: none;
+        }
+
+        #blog.active {
+            display: block;
+        }
+
+        .blog-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .blog-post {
+            border: 1px solid var(--border);
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 2rem;
+            align-items: center;
+            transition: all 0.3s ease;
+            background: var(--bg-secondary);
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .blog-post:hover {
+            border-color: var(--accent-dim);
+            transform: translateX(8px);
+        }
+
+        .blog-date {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            min-width: 100px;
+        }
+
+        .blog-content h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .blog-content p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .blog-arrow {
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+        }
+
+        .blog-post:hover .blog-arrow {
+            color: var(--accent);
+            transform: translateX(5px);
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .footer-cta {
+            max-width: 500px;
+        }
+
+        .footer-cta h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .footer-cta p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-copy {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .getin-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--accent);
+            color: var(--bg-primary);
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .getin-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px var(--accent-dim);
+        }
+
+        /* Animations */
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Scroll reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header, .hero, section, footer {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+
+            nav {
+                gap: 1.5rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .blog-post {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .floating-element {
+                display: none;
+            }
+
+            .footer-top {
+                flex-direction: column;
+                gap: 2rem;
+                align-items: flex-start;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1.5rem;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <header id="header">
+        <div class="logo">&lt;/&gt; sridevi</div>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="/blog.html">Blog</a>
+        </nav>
+        <div class="header-controls">
+            <button class="icon-btn music-toggle" id="musicToggle" aria-label="Toggle background music">
+                ♪
+            </button>
+            <button class="icon-btn theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                ☀
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-label">Full-Stack Engineer | AI & Cloud</div>
+                <h1>
+                    <span class="line">Building scalable</span>
+                    <span class="line">AI-powered systems</span>
+                </h1>
+                <p class="hero-description">
+                   Full-stack engineer specializing in AI, cloud infrastructure, and modern web technologies. Currently building Hyrenet and engineering solutions at HCL GUVI
+                </p>
+                <div class="hero-links">
+                    <a href="#projects" class="btn btn-primary">View Projects</a>
+                    <a href="mailto:sridevimanjuraja@gmail.com" class="btn">Get in Touch</a>
+                </div>
+            </div>
+            <div class="floating-element float-1">// code</div>
+            <div class="floating-element float-2">// create</div>
+        </section>
+
+        <section id="about" class="reveal">
+            <div class="section-header">
+                <span class="section-number">01</span>
+                <h2>About Me</h2>
+            </div>
+            <div style="max-width: 800px;">
+                <p style="font-size: 1.1rem; line-height: 1.9; color: var(--text-secondary); margin-bottom: 2rem;">
+                    I'm a software engineer with a passion for building tools that solve real problems.
+                    From automating Instagram content creation to crafting beautiful color palette extractors,
+                    I love bringing ideas to life through code.
+                </p>
+                <p style="font-size: 1.1rem; line-height: 1.9; color: var(--text-secondary);">
+                    My work focuses on clean, efficient solutions with great user experiences.
+                    When I'm not coding, you'll find me exploring new technologies and contributing to open source.
+                </p>
+            </div>
+        </section>
+
+        <section id="projects" class="reveal">
+            <div class="section-header">
+                <span class="section-number">02</span>
+                <h2>Featured Projects</h2>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-icon">🤖</div>
+                        <a href="https://github.com/sridevi14/InstaReelBot" target="_blank" class="project-link">View →</a>
+                    </div>
+                    <h3>InstaReelBot</h3>
+                    <p>A simple bot that automates creating and posting Instagram Reels. It generates videos, uploads them to Cloudinary, and posts to Instagram with notifications via Twilio.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Instagram API</span>
+                        <span class="tech-tag">Cloudinary</span>
+                        <span class="tech-tag">Twilio</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-icon">🔧</div>
+                        <a href="https://post-buddy-ashy.vercel.app/" target="_blank" class="project-link">View →</a>
+                    </div>
+                    <h3>PostBuddy</h3>
+                    <p>A beautiful, frontend-only web app that extracts dominant color palettes from images. Built with Next.js, React, and Tailwind CSS.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Next.js</span>
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Tailwind CSS</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-icon">🎨</div>
+                        <a href="https://colorsnap-six.vercel.app/" target="_blank" class="project-link">View →</a>
+                    </div>
+                    <h3>ColorSnap</h3>
+                    <p>A lightweight, frontend-only API testing tool for developers. Send HTTP requests, inspect responses, and organize your API workflows — no accounts, no backend, no data leaving your browser.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Local Storage</span>
+                        <span class="tech-tag">REST API</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="blog">
+            <div class="section-header">
+                <span class="section-number">03</span>
+                <h2>Blog</h2>
+            </div>
+            <div class="blog-grid">
+                <a href="#" class="blog-post">
+                    <div class="blog-date">Jan 15, 2026</div>
+                    <div class="blog-content">
+                        <h3>Building Automation Tools with Python</h3>
+                        <p>A deep dive into creating efficient automation workflows</p>
+                    </div>
+                    <div class="blog-arrow">→</div>
+                </a>
+                <a href="#" class="blog-post">
+                    <div class="blog-date">Dec 28, 2025</div>
+                    <div class="blog-content">
+                        <h3>Frontend Architecture Patterns</h3>
+                        <p>Best practices for scalable React applications</p>
+                    </div>
+                    <div class="blog-arrow">→</div>
+                </a>
+                <a href="#" class="blog-post">
+                    <div class="blog-date">Dec 10, 2025</div>
+                    <div class="blog-content">
+                        <h3>Color Theory in Web Design</h3>
+                        <p>How to create beautiful color palettes programmatically</p>
+                    </div>
+                    <div class="blog-arrow">→</div>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="reveal">
+        <div class="footer-content">
+            <div class="footer-top">
+                <div class="footer-cta">
+                    <h3>Looking to collaborate?</h3>
+                    <p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.</p>
+                </div>
+                <a href="mailto:your.email@example.com" target="_blank" class="getin-btn">
+                    Get in Touch
+                </a>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-links">
+                    <a href="https://github.com/sridevi14" target="_blank">
+                        <span>GitHub</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/sridevimanjuraja/" target="_blank">
+                        <span>LinkedIn</span>
+                    </a>
+                    <a href="https://www.instagram.com/sridevi.tech/" target="_blank">
+                        <span>Instagram</span>
+                    </a>
+                    <a href="mailto:your.email@example.com">
+                        <span>Email</span>
+                    </a>
+                </div>
+                <div class="footer-copy">© 2026 Sridevi. All rights reserved</div>
+            </div>
+        </div>
+    </footer>
+
+    <audio id="bgMusic" loop>
+        <source src="https://cdn.pixabay.com/audio/2022/05/27/audio_1808fbf07a.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        // Theme toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+
+        // Check for saved theme preference or default to dark
+        const currentTheme = localStorage.getItem('theme') || 'dark';
+        html.setAttribute('data-theme', currentTheme);
+        updateThemeIcon(currentTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        });
+
+        function updateThemeIcon(theme) {
+            themeToggle.textContent = theme === 'dark' ? '☀' : '🌙';
+        }
+
+        // Custom cursor
+        const cursor = document.querySelector('.cursor');
+        const cursorFollower = document.querySelector('.cursor-follower');
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.transform = `translate(${e.clientX - 4}px, ${e.clientY - 4}px)`;
+            cursorFollower.style.transform = `translate(${e.clientX - 16}px, ${e.clientY - 16}px)`;
+        });
+
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Music toggle
+        const musicToggle = document.getElementById('musicToggle');
+        const bgMusic = document.getElementById('bgMusic');
+
+        musicToggle.addEventListener('click', () => {
+            if (bgMusic.paused) {
+                bgMusic.play();
+                musicToggle.classList.add('playing');
+            } else {
+                bgMusic.pause();
+                musicToggle.classList.remove('playing');
+            }
+        });
+
+
+        // Scroll reveal animation
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const revealOnScroll = () => {
+            revealElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+
+                if (elementTop < windowHeight * 0.85) {
+                    element.classList.add('active');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll(); // Initial check
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                if (this.getAttribute('href') !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
