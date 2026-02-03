@@ -2,7 +2,7 @@
 
 A modern, minimalist portfolio website showcasing my work as a Full-Stack Engineer specializing in AI, cloud infrastructure, and modern web technologies.
 
-[![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://sridevimanju.dev)
+[![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://www.sridevi.me/)
 [![Next.js](https://img.shields.io/badge/Next.js-14-black)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)](https://www.typescriptlang.org/)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
