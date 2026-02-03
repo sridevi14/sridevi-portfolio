@@ -9,16 +9,6 @@ A modern, minimalist portfolio website showcasing my work as a Full-Stack Engine
 
 ![Portfolio Preview](./public/images/preview.png)
 
-## ✨ Features
-
-- 🎨 **Dark/Light Theme Toggle** - Switch between themes seamlessly
-- 🎵 **Background Music Toggle** - Optional ambient music
-- ✨ **Custom Cursor Animation** - Interactive cursor effects
-- 📱 **Fully Responsive** - Optimized for all devices
-- ⚡ **Smooth Animations** - Scroll-triggered animations with IntersectionObserver
-- 📝 **Dynamic Blog System** - Individual blog post pages with routing
-- 🚀 **Fast Performance** - Built with Next.js 14 for optimal speed
-- 🎯 **SEO Optimized** - Meta tags and Open Graph support
 
 ## 🛠️ Tech Stack
 
@@ -92,41 +82,7 @@ sridevi-portfolio/
    
    Navigate to [http://localhost:3000](http://localhost:3000)
 
-## 🎨 Customization
 
-### Update Personal Information
-
-- **Hero Section:** Edit `src/components/Hero.tsx`
-- **About Section:** Edit `src/components/About.tsx`
-- **Projects:** Edit `src/components/Projects.tsx`
-- **Social Links:** Edit `src/components/Footer.tsx`
-- **Blog Posts:** Edit `src/app/blog/page.tsx` and `src/app/blog/[slug]/page.tsx`
-
-### Theme Colors
-
-Edit the CSS variables in `src/app/globals.css`:
-
-```css
-:root {
-  --bg-primary: #0a0a0a;
-  --bg-secondary: #111111;
-  --text-primary: #e8e8e8;
-  --text-secondary: #888888;
-  --accent: #00ff88;
-  --accent-dim: #00ff8833;
-  --border: #222222;
-}
-
-.light-theme {
-  --bg-primary: #ffffff;
-  --bg-secondary: #f5f5f5;
-  --text-primary: #1a1a1a;
-  --text-secondary: #666666;
-  --accent: #00d170;
-  --accent-dim: #00d17033;
-  --border: #e0e0e0;
-}
-```
 
 ### Add Your Profile Image
 
@@ -151,28 +107,6 @@ npm run build
 npm start
 ```
 
-## 🚀 Deployment
-
-### Deploy to Vercel (Recommended)
-
-1. Push your code to GitHub
-2. Import the repository on [Vercel](https://vercel.com)
-3. Deploy with one click!
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/sridevi14/sridevi-portfolio)
-
-### Deploy to Other Platforms
-
-- **Netlify:** Connect your GitHub repo
-- **Cloudflare Pages:** Similar to Vercel
-- **Custom Server:** Run `npm run build` and serve the `.next` folder
-
-## 📊 Performance
-
-- ✅ Lighthouse Score: 95+
-- ✅ First Contentful Paint: < 1s
-- ✅ Time to Interactive: < 2s
-- ✅ SEO Score: 100
 
 ## 🤝 Contributing
 
@@ -192,7 +126,7 @@ This project is open source and available under the [MIT License](LICENSE).
 
 **Sridevi Manju** - Full-Stack Engineer | AI & Cloud
 
-- 🌐 Website: [sridevimanju.dev](https://sridevimanju.dev)
+- 🌐 Website: [sridevimanju.dev](https://www.sridevi.me/)
 - 📧 Email: [sridevimanjuraja@gmail.com](mailto:sridevimanjuraja@gmail.com)
 - 💼 LinkedIn: [@sridevimanjuraja](https://www.linkedin.com/in/sridevimanjuraja/)
 - 💻 GitHub: [@sridevi14](https://github.com/sridevi14)
@@ -208,8 +142,9 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ⭐ **If you found this helpful, consider giving it a star!**
 
-☕ **[Buy me a coffee](https://buymeacoffee.com/sridevi)**
+☕ **[Buy me a coffee](https://buymeacoffee.com/sridevi14)**
 
 ---
 
 **Made with 💚 by Sridevi Manju** | © 2026 All rights reserved
+
