@@ -2,6 +2,35 @@ import CustomCursor from '@/components/CustomCursor'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import Link from 'next/link'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: "Blog",
+  description: "Thoughts on software engineering, web development, AI, and cloud technologies by Sridevi Manju. Read about building products, automation, and lessons learned.",
+  alternates: {
+    canonical: "/blog",
+  },
+  openGraph: {
+    title: "Blog | SrideviManju",
+    description: "Thoughts on software engineering, web development, AI, and cloud technologies.",
+    url: "https://www.sridevi.me/blog",
+    type: "website",
+    images: [
+      {
+        url: "/images/preview.png",
+        width: 1200,
+        height: 630,
+        alt: "SrideviManju Blog",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Blog | SrideviManju",
+    description: "Thoughts on software engineering, web development, AI, and cloud technologies.",
+    images: ["/images/preview.png"],
+  },
+}
 
 const blogPosts = [
   {

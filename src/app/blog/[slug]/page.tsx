@@ -2,6 +2,53 @@ import CustomCursor from '@/components/CustomCursor'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import Link from 'next/link'
+import type { Metadata } from "next";
+
+
+
+export async function generateMetadata(
+  { params }: { params: { slug: string } }
+): Promise<Metadata> {
+  const post = blogPostsContent[params.slug];
+
+  if (!post) {
+    return {
+      title: "Post Not Found | Sridevi Manju",
+      description: "The requested blog post could not be found.",
+    };
+  }
+
+  return {
+    title: post.title,
+    description: post.content[0], // first paragraph as description
+    alternates: {
+      canonical: `/blog/${params.slug}`,
+    },
+    openGraph: {
+      title: post.title,
+      description: post.content[0],
+      url: `https://www.sridevi.me/blog/${params.slug}`,
+      type: "article",
+      publishedTime: post.date,
+      authors: ["Sridevi Manju"],
+      images: [
+        {
+          url: "/images/preview.png",
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.content[0],
+      images: ["/images/preview.png"],
+      creator: "@srideviimanju",
+    },
+  };
+}
 
 // Blog post content - in a real app, this would come from a CMS or markdown files
 const blogPostsContent: Record<string, { title: string; date: string; content: string[] }> = {
@@ -107,9 +154,9 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
         <section className="blog-section">
           <div style={{ maxWidth: '800px' }}>
             {post.content.map((paragraph, index) => (
-              <p key={index} style={{ 
-                fontSize: '1.1rem', 
-                lineHeight: '1.9', 
+              <p key={index} style={{
+                fontSize: '1.1rem',
+                lineHeight: '1.9',
                 color: 'var(--text-secondary)',
                 marginBottom: '1.5rem'
               }}>
