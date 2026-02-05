@@ -18,7 +18,7 @@ export default function Hero() {
 
         <p className="hero-description">
           Full-stack engineer specializing in AI, cloud infrastructure, and scalable web applications.
-          Currently building Hyrenet and engineering solutions at HCL GUVI.
+          Currently building <a style={{ color: "#00ff88" }} href="https://hyrenet.in" target="_blank" rel="noopener noreferrer">Hyrenet</a> and engineering solutions at HCL GUVI.
         </p>
 
         <div className="hero-links">
