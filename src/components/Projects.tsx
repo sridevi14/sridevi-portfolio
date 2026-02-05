@@ -13,16 +13,16 @@ const projects = [
   {
     icon: '🔧',
     title: 'PostBuddy',
-    description: 'A beautiful, frontend-only web app that extracts dominant color palettes from images. Built with Next.js, React, and Tailwind CSS.',
+    description: 'A lightweight, frontend-only API testing tool for developers. Send HTTP requests, inspect responses, and organize your API workflows — no accounts, no backend, no data leaving your browser',
     link: 'https://post-buddy-ashy.vercel.app/',
-    tech: ['Next.js', 'React', 'Tailwind CSS']
+    tech: ['Next.js', 'Tailwind CSS', 'REST API']
   },
   {
     icon: '🎨',
     title: 'ColorSnap',
-    description: 'A lightweight, frontend-only API testing tool for developers. Send HTTP requests, inspect responses, and organize your API workflows — no accounts, no backend, no data leaving your browser.',
+    description: 'A beautiful, frontend-only web app that extracts dominant color palettes from images. Built with Next.js, and Tailwind CSS.',
     link: 'https://colorsnap-six.vercel.app/',
-    tech: ['JavaScript', 'Local Storage', 'REST API']
+    tech: ['Next.js', 'React', 'Tailwind CSS']
   }
 ]
 
