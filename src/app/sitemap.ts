@@ -5,11 +5,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Blog post slugs - keep in sync with your blog content
   const blogSlugs = [
-    'building-automation-tools',
-    'frontend-architecture-patterns',
-    'color-theory-web-design',
-    'cloud-infrastructure-guide',
-    'restful-apis-nodejs',
+    'will-ai-replace-developers-heres-what-i-actually-think'
   ]
 
   const blogPosts = blogSlugs.map((slug) => ({
