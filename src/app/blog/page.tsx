@@ -34,34 +34,13 @@ export const metadata: Metadata = {
 
 const blogPosts = [
   {
-    date: 'Jan 15, 2026',
-    title: 'Building Automation Tools with Python',
-    description: 'A deep dive into creating efficient automation workflows',
-    slug: 'building-automation-tools'
-  },
-  {
-    date: 'Dec 28, 2025',
-    title: 'Frontend Architecture Patterns',
-    description: 'Best practices for scalable React applications',
-    slug: 'frontend-architecture-patterns'
-  },
-  {
-    date: 'Dec 10, 2025',
-    title: 'Color Theory in Web Design',
-    description: 'How to create beautiful color palettes programmatically',
-    slug: 'color-theory-web-design'
-  },
-  {
-    date: 'Nov 25, 2025',
-    title: 'Getting Started with Cloud Infrastructure',
-    description: 'A beginner-friendly guide to AWS and deployment strategies',
-    slug: 'cloud-infrastructure-guide'
-  },
-  {
-    date: 'Nov 10, 2025',
-    title: 'Building RESTful APIs with Node.js',
-    description: 'Creating scalable backend services from scratch',
-    slug: 'restful-apis-nodejs'
+    date: 'Feb 25, 2026',
+    title: 'Will AI Replace Developers? Here\'s What I Actually Think',
+    description: 'AI can generate code, but software development is more than typing. Here’s my honest take on how AI is changing the developer role — and why it’s not replacing us.',
+    slug: 'will-ai-replace-developers-heres-what-i-actually-think',
+    category: 'Opinion',
+    tags: ['AI', 'Software Development', 'Developers', 'Programming', 'Tech Career'],
+    readTime: '4 min read'
   }
 ]
 
@@ -73,28 +52,62 @@ export default function BlogPage() {
       <main>
         <section className="blog-hero">
           <div className="blog-hero-content">
+            <span className="blog-hero-label">WRITING</span>
             <h1>Blog</h1>
-            <p>
+            <p className="blog-hero-description">
               Thoughts on software engineering, web development, and the technologies I work with.
               I write about building products, automation, and lessons learned along the way.
             </p>
+            <div className="blog-stats">
+              <div className="blog-stat">
+                <span className="blog-stat-number">{blogPosts.length}</span>
+                <span className="blog-stat-label">Articles</span>
+              </div>
+              <div className="blog-stat-divider" />
+              <div className="blog-stat">
+                <span className="blog-stat-number">2025—26</span>
+                <span className="blog-stat-label">Archive</span>
+              </div>
+            </div>
           </div>
         </section>
 
-        {/* <section className="blog-section">
-          <div className="blog-grid">
+        <section className="blog-list-section">
+          <div className="blog-list-container">
             {blogPosts.map((post, index) => (
-              <Link href={`/blog/${post.slug}`} className="blog-post" key={index}>
-                <div className="blog-date">{post.date}</div>
-                <div className="blog-content">
-                  <h3>{post.title}</h3>
-                  <p>{post.description}</p>
-                </div>
-                <div className="blog-arrow">→</div>
-              </Link>
+              <article className="blog-list-item" key={post.slug} style={{ animationDelay: `${index * 0.1}s` }}>
+                <Link href={`/blog/${post.slug}`} className="blog-list-link">
+                  <div className="blog-list-marker">
+                    <span className="blog-list-dot" />
+                    <span className="blog-list-line" />
+                  </div>
+                  <div className="blog-list-content">
+                    <div className="blog-list-meta">
+                      <span className="blog-list-category">{post.category}</span>
+                      <span className="blog-list-divider" />
+                      <time className="blog-list-date">{post.date}</time>
+                      <span className="blog-list-divider" />
+                      <span className="blog-list-readtime">{post.readTime}</span>
+                    </div>
+                    <h2 className="blog-list-title">{post.title}</h2>
+                    <p className="blog-list-description">{post.description}</p>
+                    <div className="blog-list-tags">
+                      {post.tags.map((tag) => (
+                        <span key={tag} className="blog-list-tag">{tag}</span>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="blog-list-arrow">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M5 12h14" />
+                      <path d="m12 5 7 7-7 7" />
+                    </svg>
+                  </div>
+                </Link>
+              </article>
             ))}
           </div>
-        </section> */}
+        </section>
       </main>
       <Footer />
     </>

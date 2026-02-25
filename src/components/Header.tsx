@@ -61,8 +61,8 @@ export default function Header() {
   return (
     <>
       <header className={isScrolled ? 'scrolled' : ''}>
-        <div className="logo">&lt;/&gt; Sridevi</div>
-        
+        <Link className="logo" href="/">&lt;/&gt; Sridevi</Link>
+
         {/* Desktop Navigation */}
         <nav className="desktop-nav">
           <Link href="/#about">About</Link>
@@ -71,23 +71,23 @@ export default function Header() {
         </nav>
 
         <div className="header-controls">
-          <button 
+          <button
             className={`icon-btn music-toggle ${isPlaying ? 'playing' : ''}`}
             onClick={toggleMusic}
             aria-label="Toggle background music"
           >
             ♪
           </button>
-          <button 
+          <button
             className="icon-btn theme-toggle"
             onClick={toggleTheme}
             aria-label="Toggle theme"
           >
             {theme === 'dark' ? '☀' : '🌙'}
           </button>
-          
+
           {/* Mobile Menu Button */}
-          <button 
+          <button
             className={`mobile-menu-btn ${isMobileMenuOpen ? 'active' : ''}`}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle mobile menu"
