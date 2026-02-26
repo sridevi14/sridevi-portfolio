@@ -123,6 +123,23 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-B9VLN0HMQR"></script>
+ <script
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=G-B9VLN0HMQR"
+  />
+
+  {/* Google Analytics Config */}
+  <script
+    dangerouslySetInnerHTML={{
+      __html: `
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-B9VLN0HMQR');
+      `,
+    }}
+  />
 
         {/* JSON-LD Structured Data */}
         <script
