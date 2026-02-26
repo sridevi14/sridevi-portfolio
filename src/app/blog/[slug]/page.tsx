@@ -53,13 +53,30 @@ I find that relieving.`}</BlogText>
         <BlogSection>What AI is good at — and where it falls short
         </BlogSection>
         <BlogText>
-          {`AI is great at repetitive tasks. It has seen the same kind of code thousands of times — so yeah, it can write boilerplate, build features, even put together a whole system from scratch if you give it the right context. That part is genuinely impressive.
+          {`AI is great at repetitive tasks. It has seen similar patterns thousands of times — so yes, it can write boilerplate, build features, and even scaffold an entire system if you give it the right context. That part is genuinely impressive.
 
-But here's the thing. Writing code is honestly the easiest part of the job. The harder part is everything else. Will this cause a production issue? Does it handle edge cases? Is it going to scale? Does it actually match the business logic?. AI writes code based on patterns. It doesn't think about any of that. When I work on a feature, I'm thinking about way more than just the code.
- Will this cause a production issue?. Does it handle edge cases?. Will it scale?. Does it truly match the business logic? Are we going to regret this later?. That thinking comes from being inside the system every day.
-AI  can't do that. Not yet.
-          `}
+But here’s the thing: writing code is often the easiest part of the job. The harder part is everything around it.
+
+Will this cause a production issue?
+Does it handle edge cases?
+Will it scale?
+Does it truly match the business logic?
+Are we going to regret this decision six months from now?
+
+AI generates code based on patterns. It can suggest solutions. But it doesn’t live inside your system.
+
+When I work on a feature, I’m thinking beyond syntax — how it connects to other services, how it affects performance. I’m considering trade-offs, anticipating future needs, and making judgment calls that require a deep understanding of the system.`}
         </BlogText>
+
+        <BlogCode>
+          That kind of thinking comes from experience — from being inside the system every day.
+        </BlogCode>
+<BlogText>
+          {`
+AI can assist.
+But it doesn’t carry responsibility. Not yet.
+          `}
+    </BlogText>
         <BlogSection>The job is shifting, not disappearing
         </BlogSection>
         <BlogText>
