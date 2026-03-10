@@ -43,7 +43,7 @@ const blogPosts = [
     readTime: '4 min read'
   },
     {
-    date: 'March 4, 2026',
+    date: 'March 11, 2026',
     title: 'Just Start. Even Now.',
     description: 'It\'s been two months. And I have some thoughts.',
     slug: 'just-start-even-now',
