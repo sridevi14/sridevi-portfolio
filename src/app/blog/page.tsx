@@ -41,6 +41,20 @@ const blogPosts = [
     category: 'Opinion',
     tags: ['AI', 'Software Development', 'Developers', 'Programming', 'Tech Career'],
     readTime: '4 min read'
+  },
+    {
+    date: 'March 4, 2026',
+    title: 'Just Start. Even Now.',
+    description: 'It\'s been two months. And I have some thoughts.',
+    slug: 'just-start-even-now',
+    category: 'Personal Growth',
+    tags: ['Personal Growth',
+  'Self Discovery',
+  'Mindset',
+  'Overthinking',
+  'Consistency',
+  'Starting'],
+    readTime: '3 min read'
   }
 ]
 

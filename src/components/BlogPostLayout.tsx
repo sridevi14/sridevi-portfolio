@@ -114,7 +114,7 @@ export function BlogListItem({ children }: { children: ReactNode }) {
 
 // Helper component for blockquotes
 export function BlogQuote({ children }: { children: ReactNode }) {
-  return <blockquote className="blog-quote">{children}</blockquote>
+  return <blockquote className="blog-quote">" {children} "</blockquote>
 }
 
 // Helper component for links
@@ -125,3 +125,14 @@ export function BlogLink({ href, children }: { href: string; children: ReactNode
     </a>
   )
 }
+
+
+export function Author() {
+  return (
+      <p className="blog-post-author"><strong>- sridevi</strong></p>
+
+  )
+}
+
+
+

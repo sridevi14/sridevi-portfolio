@@ -8,7 +8,8 @@ import BlogPostLayout, {
   BlogList,
   BlogListItem,
   BlogQuote,
-  BlogLink
+  BlogLink,
+  Author
 } from '@/components/BlogPostLayout'
 
 // Blog post content - in a real app, this would come from a CMS or markdown files
@@ -84,7 +85,7 @@ But it doesn’t carry responsibility. Not yet.
 Think of it like this — AI is like a fast assistant who's great at doing tasks. But you're still the one who decides what to build, how to build it, and whether it's actually the right call. The role of a developer is evolving. We're becoming more like architects and problem solvers, and less like typists. And honestly? I think that's a good thing.`}
         </BlogText>
         <BlogQuote>
-          "Writing code was never the hard part. Understanding what you're building — that's where the real work is."
+          Writing code was never the hard part. Understanding what you're building — that's where the real work is.
         </BlogQuote>
         <BlogSection>Don't skip the basics — seriously
         </BlogSection>
@@ -107,71 +108,62 @@ I’m curious how other developers are experiencing this shift.
 `}
         </BlogText>
         <BlogQuote>
-          "Nobody was celebrating how many lines of code they typed. We celebrate what we shipped, what we solved, what we figured out."
+          Nobody was celebrating how many lines of code they typed. We celebrate what we shipped, what we solved, what we figured out.
         </BlogQuote>
+         <Author></Author>
       </>
     )
   },
-  'building-automation-tools': {
-    title: 'Building Automation Tools with Python',
-    date: 'Jan 15, 2026',
-    category: 'Tutorial',
-    readTime: '5 min read',
-    intro: 'Automation is one of the most powerful applications of programming. In this post, I\'ll share my experience building InstaReelBot and the lessons I learned about creating reliable, respectful automation.',
+  'just-start-even-now': {
+    title: 'Just Start.\nEven Now.',
+    date: 'March 11, 2026',
+    category: 'Personal Growth',
+    readTime: '3 min read',
+    intro: 'It\'s been two months. And I have some thoughts.',
     content: (
-      <>
-        <BlogSection>Understanding the Workflow</BlogSection>
-        <BlogParagraph>
-          The key to good automation is understanding the workflow you want to automate. Before writing a single line of code,
-          break down the process into discrete steps. Identify potential failure points, and build in error handling from the start.
-        </BlogParagraph>
-        <BlogParagraph>
-          When I built InstaReelBot, I spent the first week just manually going through the workflow—downloading reels,
-          processing them, and understanding exactly what decisions needed to be made at each step.
-        </BlogParagraph>
+<>
+  <BlogText>
+    {`It's been two months since the year started, and I've had a lot of thoughts sitting in my head that I finally wanted to write down.
 
-        <BlogSection>Choosing the Right Tools</BlogSection>
-        <BlogParagraph>
-          Python is an excellent choice for automation tasks due to its extensive library ecosystem. Some libraries I rely on:
-        </BlogParagraph>
-        <BlogList>
-          <BlogListItem><BlogCode>requests</BlogCode> — for HTTP requests and API interactions</BlogListItem>
-          <BlogListItem><BlogCode>selenium</BlogCode> — for browser automation when APIs aren&apos;t available</BlogListItem>
-          <BlogListItem><BlogCode>schedule</BlogCode> — for running tasks at specific times</BlogListItem>
-          <BlogListItem><BlogCode>python-dotenv</BlogCode> — for managing configuration</BlogListItem>
-        </BlogList>
+I'm not a "new year, new me" person. Never was. That whole January energy never really made sense to me. But somehow I was still waiting. Not for January. Just for the right moment. The right mood. When things were less busy. When I felt more ready. When everything felt aligned enough to finally begin.
 
-        <BlogSection>Respecting Rate Limits</BlogSection>
-        <BlogParagraph>
-          One important consideration is rate limiting. Most APIs have limits on how many requests you can make.
-          Implement exponential backoff and respect the service&apos;s terms of use.
-        </BlogParagraph>
-        <BlogCodeBlock language="python">{`import time
-import random
+And that waiting? It went on longer than I expected.
 
-def make_request_with_backoff(url, max_retries=5):
-    for attempt in range(max_retries):
-        try:
-            response = requests.get(url)
-            if response.status_code == 429:  # Rate limited
-                wait_time = (2 ** attempt) + random.uniform(0, 1)
-                time.sleep(wait_time)
-                continue
-            return response
-        except Exception as e:
-            if attempt == max_retries - 1:
-                raise e
-    return None`}</BlogCodeBlock>
+I think planning became my way of feeling productive without actually doing anything. Making lists, thinking about how it would go, imagining the whole process — all of that felt good for a moment. Like progress. But then the actual doing part showed up. And it was messy. Uncomfortable. Nothing like what I imagined. So I waited again. And somehow there was always another reason to wait — another day, another mood, another excuse that felt reasonable at the time.
 
-        <BlogSection>Testing and Deployment</BlogSection>
-        <BlogParagraph>
-          Testing automation tools can be tricky since they often interact with external services. Consider using mock servers
-          for development and always have a staging environment before deploying to production.
-        </BlogParagraph>
-        <BlogQuote>
-          The best automation tools are the ones that fail gracefully. Always have a plan for when things go wrong.
+This year I just got tired of that honestly.
+
+Instead of waiting, I started following whatever felt even slightly interesting in that moment. Not because I had a plan. Not because the timing was perfect. just because something pulled my attention for a second — and i followed it.
+
+I didn’t really have a goal. the path felt uncertain, and i wasn’t planning where any of it would lead. i was just trying things and seeing what happened.
+
+I might think something is perfect for me. I plan it, I imagine myself in it — but once I start, I realiseed I don't even like it. I lose interest. And then you feel guilty for quitting.
+Yet, it’s all part of the process. It’s about figuring things out, testing what works, and exploring different paths. Progress isn’t always visible, and that’s okay. The important part is learning and experimenting, not having a neat, linear story.
+
+Leaving something doesn't always mean failure — sometimes it's just clarity.
+
+And sometimes while trying one thing, I stumbled into something unexpected — something I wasn’t even looking for, but it felt a little more like mine.
+`}
+  </BlogText>
+
+  <BlogQuote>
+    {"You don't really discover those things by waiting. You only find them by moving."}
+  </BlogQuote>
+
+  <BlogText>
+    {`
+The consistency pressure used to get to me too. If I missed a few days, I'd spiral and feel like I ruined everything. But lately I've realised — if something genuinely belongs in your life, you come back to it. Not because you force yourself. Just because it keeps pulling you back. And if it doesn't pull you back, maybe it was never really yours to begin with. I think that's okay.
+
+I'm slowly starting to accept that maybe figuring life out just looks like experimenting. Trying things, dropping some, and sometimes finding something that actually sticks. Maybe that's just how you figure out what's yours.
+`}
+  </BlogText>
+
+  <BlogQuote>
+    {`Try anything. I mean it — try everything that pulls you even for a second.`}
         </BlogQuote>
-      </>
+        <Author></Author>
+
+</>
     )
   },
   'frontend-architecture-patterns': {
