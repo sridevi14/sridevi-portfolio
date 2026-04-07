@@ -59,7 +59,7 @@ const blogPosts = [
      {
     date: 'Apr 07, 2026',
     title: 'CAP Theorem',
-    description: 'A simple idea that helps you decide how your system should behave when things go wrong — and why you have less choice than you think.',
+    description: 'A simple idea that helps you decide how your system should behave when things go wrong.',
     slug: 'cap-theorem',
     category: 'System Design',
     tags: ['System Design', 'Scalability'],

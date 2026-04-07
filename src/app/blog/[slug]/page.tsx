@@ -172,14 +172,28 @@ I'm slowly starting to accept that maybe figuring life out just looks like exper
     date: 'Apr 07, 2026',
     category: 'System Design',
     readTime: '5 min read',
-    intro: 'A simple idea that helps you decide how your system should behave when things go wrong — and why you have less choice than you think.',
+    intro: 'A simple idea that helps you decide how your system should behave when things go wrong.',
     content: (
 <>
   <BlogText>
-          {`The CAP theorem is a simple idea used in system design to explain how distributed systems behave.
+          {`If you’re new to system design, you’ve probably heard about the CAP theorem early on. At first, it might feel like just another concept to memorize.
+
+You might even wonder?
+“Why do I need to learn this?”
+
+The reason is simple.
+
+When you start designing real systems, things don’t always work perfectly.
+Servers fail. Networks break. Data doesn’t sync instantly. CAP theorem helps you understand how your system should behave in those situations.`}
+        </BlogText>
+        <BlogSection>
+CAP Theorem
+        </BlogSection>
+        <BlogText>
+          {` The CAP theorem is a simple idea used in system design to explain how distributed systems behave.
 
           First, let’s understand the three terms in the simplest way:`}
-  </BlogText>
+        </BlogText>
          <BlogDefinitions definitions={[
           { letter: 'C', text: '<strong>Consistency</strong> — every user sees the same, latest data' },
           { letter: 'A', text: '<strong>Availability</strong> — the system always responds (no errors)' },
@@ -201,17 +215,21 @@ This is where the trade-off comes in.
         </BlogText>
         <BlogQuote >
 {`If the system chooses to wait or fail, it is prioritizing consistency (CP).
-If the system chooses to respond immediately, it is prioritizing availability (AP)`}
+ If the system chooses to respond immediately, it is prioritizing availability (AP)`}
         </BlogQuote>
         <BlogSection>𝗖𝗣 𝘀𝘆𝘀𝘁𝗲𝗺 (𝗖𝗼𝗻𝘀𝗶𝘀𝘁𝗲𝗻𝗰𝘆 + 𝗣𝗮𝗿𝘁𝗶𝘁𝗶𝗼𝗻 𝘁𝗼𝗹𝗲𝗿𝗮𝗻𝗰𝗲)
         </BlogSection>
         <BlogText>
           {`In this type, the system focuses on showing correct data. If it cannot guarantee the latest data, it may fail or ask you to try again.
 
-Example: Bank balance
-When you check your balance after sending money, you expect the correct amount.
-If there is some issue in the system, it is better to show an error
-instead of showing the wrong balance.`}
+Example: Bank balance → CP system
+
+Consistency matters most → You expect the latest, correct balance every time.
+Availability is secondary → The system may delay the response or show an error if it can’t guarantee correctness.
+Why?
+In a distributed system, your balance might be stored across multiple servers.
+Network issues can mean some servers have outdated data.
+If the system returned data from an outdated server, you’d see the wrong balance — which could be disastrous. So, the system chooses to prioritize consistency (CP) over availability (AP) in this case.`}
         </BlogText>
          <BlogSection>𝗔𝗣 𝘀𝘆𝘀𝘁𝗲𝗺 (𝗔𝘃𝗮𝗶𝗹𝗮𝗯𝗶𝗹𝗶𝘁𝘆 + 𝗣𝗮𝗿𝘁𝗶𝘁𝗶𝗼𝗻 𝘁𝗼𝗹𝗲𝗿𝗮𝗻𝗰𝗲)
         </BlogSection>
@@ -219,8 +237,11 @@ instead of showing the wrong balance.`}
           {` In this type, the system focuses on always responding. It will show something, even if the data is not fully updated yet.
 
 Example: Instagram feed
-When you open Instagram, you expect it to load. You might not see the latest post immediately. Likes or comments can take a few seconds to update. But the app still works and shows content.
+In this case:
+Instagram prioritizes availability → the app always responds and shows something immediately. It does not wait for perfectly up-to-date data (posts, likes, comments may be slightly delayed). So, it sacrifices strict consistency for a better user experience.
 
+In CAP terms: Instagram feed → AP system
+A (Availability) wins over C (Consistency) because users prefer the app to load instantly rather than see a delayed error-free feed.
 Simple way to remember`}
         </BlogText>
         <BlogDefinitions definitions={[
