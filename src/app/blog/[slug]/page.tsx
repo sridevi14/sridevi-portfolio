@@ -9,7 +9,8 @@ import BlogPostLayout, {
   BlogListItem,
   BlogQuote,
   BlogLink,
-  Author
+  Author,
+  BlogDefinitions
 } from '@/components/BlogPostLayout'
 
 // Blog post content - in a real app, this would come from a CMS or markdown files
@@ -166,6 +167,91 @@ I'm slowly starting to accept that maybe figuring life out just looks like exper
 </>
     )
   },
+  'cap-theorem': {
+    title: 'CAP Theorem',
+    date: 'Apr 07, 2026',
+    category: 'System Design',
+    readTime: '5 min read',
+    intro: 'A simple idea that helps you decide how your system should behave when things go wrong — and why you have less choice than you think.',
+    content: (
+<>
+  <BlogText>
+          {`The CAP theorem is a simple idea used in system design to explain how distributed systems behave.
+
+          First, let’s understand the three terms in the simplest way:`}
+  </BlogText>
+         <BlogDefinitions definitions={[
+          { letter: 'C', text: '<strong>Consistency</strong> — every user sees the same, latest data' },
+          { letter: 'A', text: '<strong>Availability</strong> — the system always responds (no errors)' },
+          { letter: 'P', text: '<strong>Partition Tolerance</strong> — the system continues working even if there are network issues between servers' }
+        ]} />
+           <BlogText>
+{`Now here is the important part.
+In real systems, “partition tolerance” is not something we can avoid.
+
+In a distributed system, servers talk to each other over a network. Sometimes that network can fail. Messages can be delayed or lost.
+
+When that happens, some parts of the system may not have the latest data. Now the system has to decide what to do when a network failure happens:
+
+  • Wait (or fail) until it can get the correct data
+  • Or respond immediately with slightly old data
+
+This is where the trade-off comes in.
+`}
+        </BlogText>
+        <BlogQuote >
+{`If the system chooses to wait or fail, it is prioritizing consistency (CP).
+If the system chooses to respond immediately, it is prioritizing availability (AP)`}
+        </BlogQuote>
+        <BlogSection>𝗖𝗣 𝘀𝘆𝘀𝘁𝗲𝗺 (𝗖𝗼𝗻𝘀𝗶𝘀𝘁𝗲𝗻𝗰𝘆 + 𝗣𝗮𝗿𝘁𝗶𝘁𝗶𝗼𝗻 𝘁𝗼𝗹𝗲𝗿𝗮𝗻𝗰𝗲)
+        </BlogSection>
+        <BlogText>
+          {`In this type, the system focuses on showing correct data. If it cannot guarantee the latest data, it may fail or ask you to try again.
+
+Example: Bank balance
+When you check your balance after sending money, you expect the correct amount.
+If there is some issue in the system, it is better to show an error
+instead of showing the wrong balance.`}
+        </BlogText>
+         <BlogSection>𝗔𝗣 𝘀𝘆𝘀𝘁𝗲𝗺 (𝗔𝘃𝗮𝗶𝗹𝗮𝗯𝗶𝗹𝗶𝘁𝘆 + 𝗣𝗮𝗿𝘁𝗶𝘁𝗶𝗼𝗻 𝘁𝗼𝗹𝗲𝗿𝗮𝗻𝗰𝗲)
+        </BlogSection>
+        <BlogText>
+          {` In this type, the system focuses on always responding. It will show something, even if the data is not fully updated yet.
+
+Example: Instagram feed
+When you open Instagram, you expect it to load. You might not see the latest post immediately. Likes or comments can take a few seconds to update. But the app still works and shows content.
+
+Simple way to remember`}
+        </BlogText>
+        <BlogDefinitions definitions={[
+          { letter: 'CP', text: 'Correct data is more important than always responding' },
+          { letter: 'AP', text: 'Always responding is more important than correct data' }
+        ]} />
+         <BlogSection>
+          What do you think?
+        </BlogSection>
+        <BlogText>
+          {`Take a ride-booking app like Rapido.
+When it shows nearby drivers and their locations in real time,
+
+which does it choose?`}
+        </BlogText>
+        <BlogDefinitions definitions={[
+          { letter: 'CP', text: 'It shows the correct location of drivers, even if it takes a few seconds to load' },
+          { letter: 'AP', text: 'It shows something immediately, even if the driver locations are not fully updated yet' }
+        ]} />
+        <BlogText>
+          {`In this case, it is more important to show something immediately (AP) rather than waiting for the exact correct data (CP). If the app took too long to load because it was trying to get the latest data, users would get frustrated and might even miss their ride.`}</BlogText>
+        <BlogText>{`That’s all CAP theorem is about.
+
+It helps you decide what matters more for your system:
+correctness
+or availability.`}</BlogText>
+      </>
+
+    )
+  },
+
   'frontend-architecture-patterns': {
     title: 'Frontend Architecture Patterns',
     date: 'Dec 28, 2025',

@@ -126,6 +126,19 @@ export function BlogLink({ href, children }: { href: string; children: ReactNode
   )
 }
 
+// Helper component for definitions
+export function BlogDefinitions({ definitions }: { definitions: Array<{ letter: string; text: string }> }) {
+  return (
+    <div className="definitions">
+      {definitions.map((def, index) => (
+        <div key={index} className="def-card">
+          <span className="def-letter">{def.letter}</span>
+          <p className="def-text" dangerouslySetInnerHTML={{ __html: def.text }} />
+        </div>
+      ))}
+    </div>
+  )
+}
 
 export function Author() {
   return (

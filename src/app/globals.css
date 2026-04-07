@@ -1299,6 +1299,47 @@ footer {
     font-style: italic;
 }
 
+/* Definitions */
+.definitions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 20px 0 32px;
+}
+
+.def-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 18px;
+    display: flex;
+    gap: 14px;
+    align-items: center;
+}
+
+.def-letter {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--accent);
+    background: rgba(0, 255, 136, 0.1);
+    border: 1px solid rgba(0, 255, 136, 0.2);
+    border-radius: 4px;
+    padding: 2px 8px;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.def-text {
+    color: var(--text-secondary);
+    font-size: 15px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.def-text strong {
+    color: var(--text-primary);
+}
+
 .blog-quote p {
     font-size: 1.15rem;
     line-height: 1.7;
